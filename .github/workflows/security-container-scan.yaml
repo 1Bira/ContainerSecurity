@@ -16,15 +16,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v7      
+      uses: actions/checkout@v7
 
-    - name: Scan images  
-      uses: aquasecurity/trivy-action@v0.30.0
+    #- name: Build an image from Dockerfile
+    #  run: docker build -t ttapp:latest images/ado-container/.    
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@v0.36.0
       with: 
-        scan-type: 'image' 
+        sacn-type: 'fs'
         scan-ref: 'images/ado-container/'  # Path to your Terraform files  
         format: 'sarif'
-        scanners: 'vuln,secret,misconfig'
+        scanners: 'vuln,secret,misconfig,license'
         severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
         exit-code: 0
         output: 'trivy-image-results.sarif' 
