@@ -24,7 +24,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@v0.36.0
       with: 
-        sacn-type: 'fs'
+        scan-type: 'fs'
         scan-ref: 'images/ado-container/'  # Path to your Terraform files  
         format: 'sarif'
         scanners: 'vuln,secret,misconfig,license'
