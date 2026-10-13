@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@4
+      uses: actions/checkout@7
 
     - name: Scan images  
       uses: aquasecurity/trivy-action@0.28.0
