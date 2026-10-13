@@ -33,7 +33,7 @@ jobs:
         scanners: 'vuln,secret,misconfig,license'
         severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
         exit-code: 0
-        output: 'trivy-image-results.sarif' 
+        #output: 'trivy-image-results.sarif' 
 
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v4
