@@ -9,5 +9,6 @@ jobs:
   container:
     runs-on: ubuntu-latest
     steps:
-    - run: pipeline de security container executed
+    - name: security container executed
+      run: "pipeline de security container executed"
 
