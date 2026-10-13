@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v7      
 
     - name: Scan images  
-      uses: aquasecurity/trivy-action@0.30.0
+      uses: aquasecurity/trivy-action@v0.30.0
       with: 
         scan-type: 'image' 
         scan-ref: 'images/ado-container/'  # Path to your Terraform files  
