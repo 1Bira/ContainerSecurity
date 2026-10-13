@@ -17,6 +17,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v7
+    
+    - name: Verifi
+      run: ls -laF
 
     #- name: Build an image from Dockerfile
     #  run: docker build -t ttapp:latest images/ado-container/.    
