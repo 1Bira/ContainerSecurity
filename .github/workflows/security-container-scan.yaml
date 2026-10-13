@@ -1,0 +1,13 @@
+on: 
+  push:
+    branches:
+      - main
+  pull_requests:
+    branches:
+      - tests
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - run: pipeline de security container
+
