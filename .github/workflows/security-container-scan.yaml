@@ -36,5 +36,5 @@ jobs:
           sarif_file: 'trivy-image-results.sarif' 
 
     - name: security container executed
-      run: "pipeline de security container executed"
+      run: echo "pipeline de security container executed"
 
