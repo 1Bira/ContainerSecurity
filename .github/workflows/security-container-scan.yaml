@@ -28,12 +28,13 @@ jobs:
       uses: aquasecurity/trivy-action@v0.36.0
       with: 
         scan-type: 'fs'
-        scan-ref: 'images/ado-container/dockerfile'  # Path to your Terraform files  
+        scan-ref: '.'  # Path to your Terraform files  
         format: 'sarif'
-        scanners: 'vuln,secret,misconfig,license'
-        severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
-        exit-code: 0
+        #scanners: 'vuln,secret,misconfig,license'
+        #severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
+       # exit-code: 0
         output: 'trivy-image-results.sarif' 
+        args: '--scanners misconfig,secret --severity CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN --exit-code 0 images/ado-container/dockerfile'
 
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v4
