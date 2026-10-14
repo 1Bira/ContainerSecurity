@@ -17,23 +17,20 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v7
-    
-    - name: Verifi
-      run: ls -laF images/ado-container/
 
     - name: Lint Dockerfile with Hadolint
       uses: hadolint/hadolint-action@master
       with:
         dockerfile: 'images/ado-container/dockerfile' 
 
-    #- name: Build an image from Dockerfile
-    #  run: docker build -t ttapp:latest images/ado-container/.    
+    - name: Build an image from Dockerfile
+      run: docker build -t ttapp:latest images/ado-container/.    
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@v0.36.0
       with: 
-        scan-type: 'fs'
-        scan-ref: '.'  # Path to your Terraform files  
+        scan-type: 'image'
+        scan-ref: 'ttapp:latest'  # Path to your Terraform files  
         format: 'table'
         scanners: 'vuln,secret,misconfig,license'
         severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
