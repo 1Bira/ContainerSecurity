@@ -24,7 +24,7 @@ jobs:
     - name: Lint Dockerfile with Hadolint
       uses: hadolint/hadolint-action@master
       with:
-        dockerfile: 'images/ado-container/Dockerfile' 
+        dockerfile: 'images/ado-container/dockerfile' 
 
     #- name: Build an image from Dockerfile
     #  run: docker build -t ttapp:latest images/ado-container/.    
