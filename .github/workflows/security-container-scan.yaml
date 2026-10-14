@@ -25,10 +25,10 @@ jobs:
         recursive: true # Ativa a busca automática em subpastas
         no-fail: true
 
-    - name: Build an image from Dockerfile
+    - name: Build an image from Dockerfile Image 1
       run: docker build -t ttapp:latest images/ado-container/.    
 
-    - name: Run Trivy vulnerability scanner
+    - name: Run Trivy vulnerability scanner Image 1
       uses: aquasecurity/trivy-action@v0.36.0
       with: 
         scan-type: 'image'
@@ -39,10 +39,10 @@ jobs:
         exit-code: 0
         #output: 'trivy-image-results.sarif' 
 
-    - name: Build an image from Dockerfile
+    - name: Build an image from Dockerfile Image 2
       run: docker build -t iacapp:latest images/iac-github-container/.    
 
-    - name: Run Trivy vulnerability scanner
+    - name: Run Trivy vulnerability scanner Image 2
       uses: aquasecurity/trivy-action@v0.36.0
       with: 
         scan-type: 'image'
