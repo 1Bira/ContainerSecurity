@@ -21,6 +21,11 @@ jobs:
     - name: Verifi
       run: ls -laF images/ado-container/
 
+    - name: Lint Dockerfile with Hadolint
+      uses: hadolint/hadolint-action@v2
+      with:
+        dockerfile: 'images/ado-container/Dockerfile' 
+
     #- name: Build an image from Dockerfile
     #  run: docker build -t ttapp:latest images/ado-container/.    
 
