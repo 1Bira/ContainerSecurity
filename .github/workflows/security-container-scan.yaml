@@ -21,7 +21,8 @@ jobs:
     - name: Lint Dockerfile with Hadolint
       uses: hadolint/hadolint-action@master
       with:
-        dockerfile: 'images/ado-container/dockerfile' 
+        dockerfile: '**/[Dd]ockerfile*' # Expressão regular para apanhar todas as variações de nome
+        recursive: true # Ativa a busca automática em subpastas
         no-fail: true
 
     - name: Build an image from Dockerfile
@@ -31,12 +32,25 @@ jobs:
       uses: aquasecurity/trivy-action@v0.36.0
       with: 
         scan-type: 'image'
-        scan-ref: 'ttapp:latest'  # Path to your Terraform files  
+        image-ref: 'ttapp:latest'  # Path to your Terraform files  
         format: 'table'
         scanners: 'vuln,secret,misconfig,license'
         severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
         exit-code: 0
         #output: 'trivy-image-results.sarif' 
+
+    - name: Build an image from Dockerfile
+      run: docker build -t iacapp:latest images/iac-github-container/.    
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@v0.36.0
+      with: 
+        scan-type: 'image'
+        image-ref: 'iacapp:latest'  # Path to your Terraform files  
+        format: 'table'
+        scanners: 'vuln,secret,misconfig,license'
+        severity: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN' 
+        exit-code: 0
 
     #- name: Upload Trivy scan results to GitHub Security tab
     #  uses: github/codeql-action/upload-sarif@v4
